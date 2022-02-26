@@ -51,7 +51,7 @@ async function getCookieCsrf() {
     }, 1000 * 60 * 60);
   }
   loop = true;
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.goto('https://www.fshare.vn/site/login');
   await page.type('#loginform-email', config.email);
@@ -73,7 +73,8 @@ async function getCookieCsrf() {
   cookie = cookieDownload;
   csrf = csrfDownload;
   console.log(`cookie: ${cookie} | csrf: ${csrf}`);
-  page.close();
+  await page.close();
+  await browser.closer();
   return;
 }
 
