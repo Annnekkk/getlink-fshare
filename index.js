@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const getLink = require('./getlink');
-const port = 8000;
+const port = 80;
 
 getLink.getCookieCsrf().then(() => {
   app.set('view engine', 'ejs');
