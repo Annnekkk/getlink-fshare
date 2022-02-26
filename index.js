@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const getLink = require('./getlink');
-const port = 80;
 
 getLink.getCookieCsrf().then(() => {
   app.set('view engine', 'ejs');
@@ -29,8 +28,7 @@ getLink.getCookieCsrf().then(() => {
         res.send(err);
       });
   });
-
-  app.listen(port, () => {
-    console.log(`Server dang chay tren cong ${port}`);
-  });
+  app.listen('9000','0.0.0.0',()=>{
+      console.log("server is listening on 9000 port");
+  })
 });
